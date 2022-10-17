@@ -1,7 +1,0 @@
-docker network create --subnet=172.18.0.0/16 DMZ
-docker run --net DMZ --ip 172.18.0.22 --name ubuntu -d -it ubuntu bash
-docker run --net DMZ --ip 172.18.0.23 -d -p 80:80 --name 3204-nginx nginx
-docker run --net DMZ --ip 172.18.0.24 -d -p 6603:3306 --name=3204-mysql 3204-mysql
-docker ps
-
-

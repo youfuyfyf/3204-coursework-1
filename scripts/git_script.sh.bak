@@ -1,9 +1,0 @@
-git clone https://github.com/chuayingweidexter/3204-simple-web-server
-chmod -R 777 3204-simple-web-server
-rm -rf /vagrantshared/git_resources/*
-mv 3204-simple-web-server/* /vagrantshared/git_resources
-rm -rf ~/3204-simple-web-server
-rm -rf /vagrantshared/dockerfiles/webappdocker/3204-php
-rm -rf /vagrantshared/dockerfiles/dbdocker/3204.sql
-cp -r /vagrantshared/git_resources/3204-php /vagrantshared/dockerfiles/webappdocker
-cp /vagrantshared/git_resources/3204.sql /vagrantshared/dockerfiles/dbdocker

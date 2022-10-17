@@ -2,7 +2,7 @@
 include('dbcon.php');
 include('session.php'); 
 
-$result=mysqli_query($con, "select * from users where user_id='$session_id'")or die('Error In Session');
+$result=mysqli_query($con, "select * from Accounts where User_id='$session_id'")or die('Error In Session');
 $row=mysqli_fetch_array($result);
 
  ?>
@@ -13,7 +13,7 @@ $row=mysqli_fetch_array($result);
 </head>
 <body>
 <div class="form-wrapper"> 
-    <center><h3>Welcome: <?php echo $row['name']; ?> </h3></center>
+    <center><h3>Welcome: <?php echo $row['Username']; ?> </h3></center>
 	 <div class="reminder">
     <p><a href="logout.php">Log out</a></p>
   </div>

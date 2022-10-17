@@ -5,7 +5,7 @@ git clone https://github.com/youfuyfyf/3204-coursework-1
 chmod -R 755 /vagrantshared/*
 
 ### Docker Compose ###
-cd /vagrantshared/git_resources/dockerfiles/
+cd /vagrantshared/dockerfiles/
 docker compose up -d
 
 ### Check Container Status ###

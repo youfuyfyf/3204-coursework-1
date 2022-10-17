@@ -9,7 +9,7 @@ https://jojozhuang.github.io/architecture/creating-mysql-image-with-docker-file/
 
 # Set environments
 ENV MYSQL_ROOT_PASSWORD abc123
-ENV MYSQL_DATABASE 3204_db
+ENV MYSQL_DATABASE db
 
 # The ADD command copy the database backup file 
 # to /docker-entrypoint-initdb.d directory in the Docker container. 

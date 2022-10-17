@@ -7,5 +7,5 @@ LABEL Version="0.1"
 LABEL Description="trafex/php-nginx \
 https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/"
 
-USER root
-COPY web/* /var/www/html/
+# USER root
+COPY --chown=nginx web/* /var/www/html/

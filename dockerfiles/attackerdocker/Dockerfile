@@ -1,0 +1,20 @@
+# Download base image
+FROM kalilinux/kali-rolling
+
+# LABEL about the custom image
+LABEL Maintainer="yf"
+LABEL Version="0.1"
+LABEL Description="attacker \
+https://stackoverflow.com/questions/52595272/use-docker-container-as-network-gateway/69055795#69055795?newreg=2a08445b87fa459783c83a1c239f261c"
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y \
+						sudo \
+						net-tools \
+						iputils-ping \
+						iproute2 \
+						iptables \
+						curl
+						

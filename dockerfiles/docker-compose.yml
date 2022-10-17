@@ -62,7 +62,7 @@ services:
       DMZ:
         ipv4_address: 172.16.0.2
     ports:
-      - "6603:3306"
+      - "3306:3306"
 
 
   web:

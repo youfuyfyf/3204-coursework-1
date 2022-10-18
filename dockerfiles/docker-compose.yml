@@ -19,7 +19,7 @@ services:
       tail -f /dev/null"
     tty: true
 
-  attacker:
+  boss:
     build: ./attackerdocker
     container_name: attacker
     hostname: attacker

@@ -31,7 +31,6 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 69.69.69.68 &&
-      curl 172.16.0.3
       tail -f /dev/null"
     tty: true
 
@@ -55,26 +54,28 @@ services:
       tail -f /dev/null"
     tty: true
 
-  db:
-    build: ./dbdocker
-    container_name: db
-    hostname: db
-    networks:
-      DMZ:
-        ipv4_address: 172.16.0.2
-    ports:
-      - "6603:3306"
-
-
   web:
     build: ./webappdocker
     container_name: web
-    hostname:  wb
+    hostname:  web
     networks:
       DMZ:
         ipv4_address: 172.16.0.3
     ports:
-      - "8080:80"
+      - "80:8080"
+      
+  db:
+    build: ./dbdocker
+    container_name: db
+    hostname: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123
+      - MYSQL_DATABASE=db
+    networks:
+      DMZ:
+        ipv4_address: 172.16.0.2
+    ports:
+      - "3306:3306"
 
 networks:
   OUTSIDE:

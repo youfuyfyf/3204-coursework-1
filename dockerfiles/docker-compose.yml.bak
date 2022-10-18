@@ -28,8 +28,6 @@ services:
     networks:
       OUTSIDE:
         ipv4_address: 69.69.69.69
-    ports:
-       - "69.69.69.68:2222:22"
     command: >-
       sh -c "ip route del default &&
       ip route add default via 69.69.69.68 &&
@@ -56,16 +54,35 @@ services:
       tail -f /dev/null"
     tty: true
 
-  web:
-    build: ./webappdocker
-    container_name: web
-    hostname:  web
+  web-test:
+    build: ./webapptestdocker
+    container_name: web-test
+    hostname: web-test
     networks:
       DMZ:
-        ipv4_address: 172.16.0.3
+        ipv4_address: 172.16.0.4
+    cap_add:
+      - NET_ADMIN
     ports:
-      - "80:8080"
+      - "80:80"
+    command: >- 
+      sh -c "tail -f /dev/null"
+
       
+    tty: true
+
+  # web:
+    # build: ./webappdocker
+    # container_name: web
+    # hostname:  web
+    # networks:
+      # DMZ:
+        # ipv4_address: 172.16.0.3
+    # cap_add:
+      # - NET_ADMIN
+    # ports:
+    #   - "80:8080"
+  
   db:
     build: ./dbdocker
     container_name: db

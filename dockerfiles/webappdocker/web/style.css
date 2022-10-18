@@ -10,7 +10,7 @@ body {
 
 
 .form-wrapper {
-width:400px;
+width:300px;
 height:370px;
   position: absolute;
   top: 50%;
@@ -107,10 +107,4 @@ input[type='text']{
 
 .reminder a:hover {
   color: #cab6bf;
-}
-
-table{
-  background-color: black;
-  opacity: 90%;
-  margin: auto;
 }

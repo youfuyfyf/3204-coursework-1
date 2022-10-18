@@ -17,7 +17,19 @@ RUN apt-get update && \
 						iproute2 \
 						iptables \
 						curl \
-						openssh-server
+						openssh-server \
+						lsb-release \
+						ca-certificates \
+						apt-transport-https \
+						software-properties-common \
+						nginx
+
+RUN add-apt-repository ppa:ondrej/php
+
+RUN apt-get update && \
+    apt-get install -y \ 
+		        php8.1 \
+						php8.1-{fpm,mysql}
 
 RUN sed -i '/^#/!s/PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config

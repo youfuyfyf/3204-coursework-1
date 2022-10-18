@@ -57,13 +57,18 @@ services:
   web:
     build: ./webappdocker
     container_name: web
-    hostname:  web
+    hostname: web
     networks:
       DMZ:
         ipv4_address: 172.16.0.3
+    cap_add:
+      - NET_ADMIN
     ports:
-      - "80:8080"
-      
+      - "80:80"
+    command: >- 
+      sh -c "tail -f /dev/null" 
+    tty: true
+  
   db:
     build: ./dbdocker
     container_name: db

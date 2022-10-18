@@ -2,9 +2,6 @@
 include('dbcon.php');
 include('session.php'); 
 
-$result=mysqli_query($con, "select * from Accounts where User_id='$session_id'")or die('Error In Session');
-$row=mysqli_fetch_array($result);
-
  ?>
 
 <html>
@@ -13,8 +10,31 @@ $row=mysqli_fetch_array($result);
 </head>
 <body>
 <div class="form-wrapper"> 
-    <center><h3>Welcome: <?php echo $row['Username']; ?> </h3></center>
+    <center><h3>Hello <?php$session_id?></h3></center>
 	 <div class="reminder">
+    <hr>
+   <table border="3" cellspacing="0" cellpadding="10">
+        <tbody>
+           <tr>
+              <th>IP</th>
+              <th>Username</th>
+              <th>Password</th>
+           </tr>
+    <?php
+    $username = $_GET['username'];
+    $sql ="SELECT * FROM `SSH Credentials` WHERE Accounts_User_id='$username'";
+		$result = mysqli_query($con, $sql);
+		$queryResult = mysqli_num_rows($result);
+    if($queryResult > 0){
+        while($row = mysqli_fetch_assoc($result)){
+          echo "<tr><td>".$row["IP_Address"]."</td>";
+          echo "<td>".$row["Username"]."</td>";
+          echo "<td>".$row["Password"]."</td>";
+        }
+      }
+    ?>
+    </table>
+    <hr>
     <p><a href="logout.php">Log out</a></p>
   </div>
 </div>

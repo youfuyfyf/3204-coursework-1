@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<?php session_start(); ?>
 <?php include('dbcon.php'); ?>
 <body>
 

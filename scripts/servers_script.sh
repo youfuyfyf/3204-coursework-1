@@ -8,5 +8,7 @@ chmod -R 755 /vagrantshared/*
 cd /vagrantshared/3204-coursework-1/dockerfiles/
 docker compose up -d
 
+docker container exec -d boss service ssh start
+
 ### Check Container Status ###
 docker ps

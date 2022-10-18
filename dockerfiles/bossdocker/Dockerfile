@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 # LABEL about the custom image
 LABEL Maintainer="yf"
 LABEL Version="0.1"
-LABEL Description="attacker \
+LABEL Description="boss \
 https://stackoverflow.com/questions/52595272/use-docker-container-as-network-gateway/69055795#69055795?newreg=2a08445b87fa459783c83a1c239f261c"
 
 USER root
@@ -18,8 +18,7 @@ RUN apt-get update && \
 						iptables \
 						curl \
 						openssh-server
-						
-RUN systemctl enable ssh --now
-RUN ufw allow ssh
-RUN ufw enable
-						
+
+RUN sed -i '/^#/!s/PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+RUN echo 'root:root' | chpasswd

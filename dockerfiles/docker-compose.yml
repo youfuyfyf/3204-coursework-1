@@ -20,9 +20,9 @@ services:
     tty: true
 
   boss:
-    build: ./attackerdocker
-    container_name: attacker
-    hostname: attacker
+    build: ./bossdocker
+    container_name: boss
+    hostname: boss
     cap_add:
       - NET_ADMIN
     networks:

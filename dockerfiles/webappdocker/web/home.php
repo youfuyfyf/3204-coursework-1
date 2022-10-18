@@ -6,6 +6,11 @@ $result=mysqli_query($con, "select * from Accounts where User_id='$session_id'")
 $row=mysqli_fetch_array($result);
 
  ?>
+ <form action="upload.php" method="post" enctype="multipart/form-data">
+                    Select image to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload Image" name="submit">
+                </form>
 
 <html>
 <head>

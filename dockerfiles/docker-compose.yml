@@ -66,7 +66,9 @@ services:
     ports:
       - "80:80"
     command: >- 
-      sh -c "tail -f /dev/null" 
+      sh -c "ip route del default &&
+      ip route add default via 172.16.0.1 &&
+      tail -f /dev/null"
     tty: true
   
   db:

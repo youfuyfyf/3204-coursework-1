@@ -31,7 +31,10 @@ RUN apt-get update && \
 						
 RUN apt-get install -y \
 						php8.1-fpm \
-						php8.1-mysql	
+						php8.1-mysql
+						
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 WORKDIR /var/www/html
 COPY web/* /var/www/html/

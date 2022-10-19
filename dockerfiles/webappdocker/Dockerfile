@@ -45,3 +45,13 @@ RUN mv pass.jpg ./img
 RUN mv user.jpg ./img
 
 RUN mv default /etc/nginx/sites-enabled/default
+
+USER root
+WORKDIR /home
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.3-amd64.deb
+RUN dpkg -i filebeat-8.3.3-amd64.deb
+# to copy filebeat.yml config here before enabling nginx
+RUN filebeat modules enable nginx
+# to copy nginx.yml config here
+
+

@@ -39,6 +39,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 WORKDIR /var/www/html
 COPY web/* /var/www/html/
 RUN mkdir img
+RUN mkdir uploads
 RUN mv bg.jpg ./img
 RUN mv pass.jpg ./img
 RUN mv user.jpg ./img

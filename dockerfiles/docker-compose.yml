@@ -87,7 +87,8 @@ services:
       service php8.1-fpm start &&
       service nginx start &&
       filebeat setup &&
-      service filebeat start && 
+      service filebeat start &&
+      service nginx restart &&
       tail -f /dev/null"
 
   elk:

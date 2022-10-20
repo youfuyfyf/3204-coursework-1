@@ -1,14 +1,14 @@
 services:
-  routeroutside:
-    build: ./routeroutsidedocker
-    container_name: routeroutside
-    hostname: routeroutside
+  routerinternal:
+    build: ./routerinternaldocker
+    container_name: routerinternal
+    hostname: routerinternal
     cap_add:
       - NET_ADMIN
     networks:
-      OUTSIDE:
+      INTERNAL:
         ipv4_address: 69.69.69.68
-      OUTSIDEandDMZ:
+      INTERNALandDMZ:
         ipv4_address: 192.168.69.68
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
@@ -26,11 +26,12 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      OUTSIDE:
+      INTERNAL:
         ipv4_address: 69.69.69.69
     command: >-
       sh -c "ip route del default &&
       ip route add default via 69.69.69.68 &&
+      service ssh start &&
       tail -f /dev/null"
     tty: true
 
@@ -39,7 +40,7 @@ services:
     container_name: routerdmz
     hostname:  routerdmz
     networks:
-      OUTSIDEandDMZ:
+      INTERNALandDMZ:
         ipv4_address: 192.168.69.69
       DMZ:
         ipv4_address: 172.16.0.1
@@ -54,6 +55,19 @@ services:
       tail -f /dev/null"
     tty: true
 
+  db:
+    build: ./dbdocker
+    container_name: db
+    hostname: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123
+      - MYSQL_DATABASE=db
+    networks:
+      DMZ:
+        ipv4_address: 172.16.0.2
+    ports:
+      - "3306:3306"
+
   web:
     build: ./webappdocker
     container_name: web
@@ -67,26 +81,14 @@ services:
       - "80:80"
     command: >- 
       sh -c "ip route add 69.69.69.64/29 via 172.16.0.1 &&
+      service php8.1-fpm start &&
+      service nginx start &&
       tail -f /dev/null"
-    tty: true
-  
-  db:
-    build: ./dbdocker
-    container_name: db
-    hostname: db
-    environment:
-      - MYSQL_ROOT_PASSWORD=abc123
-      - MYSQL_DATABASE=db
-    networks:
-      DMZ:
-        ipv4_address: 172.16.0.2
-    ports:
-      - "3306:3306"
-      
+
   elk:
     build: ./elkdocker
     container_name: elk
-    hostname:  elk
+    hostname: elk
     networks:
       DMZ:
         ipv4_address: 172.16.0.4
@@ -94,18 +96,24 @@ services:
       - "9200:9200"
       - "5601:5601"
       - "5044:5044"
+    healthcheck:
+      test: curl --fail http://127.0.0.1 || exit 1
+      interval: 5s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
 
 networks:
-  OUTSIDE:
-    name: OUTSIDE
+  INTERNAL:
+    name: INTERNAL
     driver: bridge
     ipam:
       config:
         - subnet: 69.69.69.64/29
           gateway: 69.69.69.70
     
-  OUTSIDEandDMZ:
-    name: OUTSIDEandDMZ
+  INTERNALandDMZ:
+    name: INTERNALandDMZ
     driver: bridge
     ipam:
       config:

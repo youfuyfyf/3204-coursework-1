@@ -86,6 +86,7 @@ services:
       sh -c "ip route add 69.69.69.64/29 via 172.16.0.1 &&
       service php8.1-fpm start &&
       service nginx start &&
+      filebeat setup &&
       tail -f /dev/null"
 
   elk:

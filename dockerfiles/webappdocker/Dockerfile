@@ -33,7 +33,7 @@ RUN apt-get install -y \
 						php8.1-fpm \
 						php8.1-mysql
 
-COPY nginx.conf /etc/nginx/
+# COPY nginx.conf /etc/nginx/
 COPY web/* /var/www/html/
 
 WORKDIR /var/www/html

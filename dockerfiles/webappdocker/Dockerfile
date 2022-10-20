@@ -32,26 +32,25 @@ RUN apt-get update && \
 RUN apt-get install -y \
 						php8.1-fpm \
 						php8.1-mysql
-						
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx/
+COPY web/* /var/www/html/
 
 WORKDIR /var/www/html
-COPY web/* /var/www/html/
 RUN mkdir img
 RUN mkdir uploads
+RUN chmod 777 uploads
 RUN mv bg.jpg ./img
 RUN mv pass.jpg ./img
 RUN mv user.jpg ./img
 
 RUN mv default /etc/nginx/sites-enabled/default
 
-USER root
 WORKDIR /home
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.3-amd64.deb
 RUN dpkg -i filebeat-8.3.3-amd64.deb
-# to copy filebeat.yml config here before enabling nginx
+COPY filebeat.yml /etc/filebeat/
+RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN filebeat modules enable nginx
-# to copy nginx.yml config here
-
-
+COPY nginx.yml /etc/filebeat/modules.d/
+RUN filebeat setup

@@ -59,6 +59,9 @@ services:
     build: ./dbdocker
     container_name: db
     hostname: db
+    # depends_on:
+      # web:
+        # condition: service_healthy
     environment:
       - MYSQL_ROOT_PASSWORD=abc123
       - MYSQL_DATABASE=db
@@ -88,8 +91,13 @@ services:
       service nginx start &&
       filebeat setup &&
       service filebeat start &&
-      service nginx restart &&
       tail -f /dev/null"
+    # healthcheck:
+      # test: docker logs web | grep 'Config OK'" || exit 1
+      # interval: 5s
+      # retries: 120
+      # start_period: 5s
+      # timeout: 10s
 
   elk:
     build: ./elkdocker

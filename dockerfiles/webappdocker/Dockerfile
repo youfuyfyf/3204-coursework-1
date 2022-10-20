@@ -32,7 +32,7 @@ RUN apt-get update && \
 RUN apt-get install -y \
 						php8.1-fpm \
 						php8.1-mysql
-						
+
 COPY web/* /var/www/html/
 
 WORKDIR /var/www/html
@@ -49,6 +49,9 @@ WORKDIR /home
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.3-amd64.deb
 RUN dpkg -i filebeat-8.3.3-amd64.deb
 COPY filebeat.yml /etc/filebeat/
-RUN chmod go-w /etc/filebeat/filebeat.yml
+RUN chmod 644 /etc/filebeat/filebeat.yml
+
 RUN filebeat modules enable nginx
 COPY nginx.yml /etc/filebeat/modules.d/
+RUN chmod 644 /etc/filebeat/modules.d/nginx.yml
+

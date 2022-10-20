@@ -17,6 +17,3 @@ ENV MYSQL_DATABASE db
 # ending with “.sql” against the MySQL database. 
 # In our example, we have only one sql script file 3204.sql
 COPY 3204.sql /docker-entrypoint-initdb.d
-
-# Open ports
-EXPOSE 3306

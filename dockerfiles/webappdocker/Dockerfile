@@ -53,4 +53,3 @@ COPY filebeat.yml /etc/filebeat/
 RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN filebeat modules enable nginx
 COPY nginx.yml /etc/filebeat/modules.d/
-RUN filebeat setup

@@ -72,6 +72,9 @@ services:
     build: ./webappdocker
     container_name: web
     hostname: web
+    depends_on:
+      elk:
+        condition: service_healthy
     networks:
       DMZ:
         ipv4_address: 172.16.0.3
@@ -97,9 +100,9 @@ services:
       - "5601:5601"
       - "5044:5044"
     healthcheck:
-      test: curl --fail http://127.0.0.1 || exit 1
+      test: curl --fail http://127.0.0.1:9600 || exit 1
       interval: 5s
-      retries: 5
+      retries: 120
       start_period: 5s
       timeout: 10s
 

@@ -92,12 +92,12 @@ services:
       filebeat setup &&
       service filebeat start &&
       tail -f /dev/null"
-    # healthcheck:
-      # test: docker logs web | grep 'Config OK'" || exit 1
-      # interval: 5s
-      # retries: 120
-      # start_period: 5s
-      # timeout: 10s
+    healthcheck:
+      test: service filebeat status | grep '* filebeat is running' || exit 1
+      interval: 5s
+      retries: 120
+      start_period: 5s
+      timeout: 10s
 
   elk:
     build: ./elkdocker

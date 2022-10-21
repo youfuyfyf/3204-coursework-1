@@ -59,9 +59,9 @@ services:
     build: ./dbdocker
     container_name: db
     hostname: db
-    # depends_on:
-      # web:
-        # condition: service_healthy
+    depends_on:
+      web:
+        condition: service_healthy
     environment:
       - MYSQL_ROOT_PASSWORD=abc123
       - MYSQL_DATABASE=db

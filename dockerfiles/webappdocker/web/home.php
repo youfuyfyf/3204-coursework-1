@@ -34,6 +34,7 @@ include('session.php');
                                 echo "<tr><td>" . $row["IP_Address"] . "</td>";
                                 echo "<td>" . $row["Username"] . "</td>";
                                 echo "<td>" . $row["Password"] . "</td>";
+                                echo "<td>" . $row["Name"] . "</td>";
                             }
                         }
                         ?>

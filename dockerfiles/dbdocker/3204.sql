@@ -73,8 +73,8 @@ COMMIT;
 START TRANSACTION;
 USE `db`;
 INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`) VALUES (1, '172.18.0.22', 'admin', 'admin', 1);
-INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`) VALUES (2, '172.18.0.31', 'employee_1', 'employee_1', 1);
-INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`) VALUES (3, '172.18.0.32', 'employee_2', 'employee_2', 1);
+INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`) VALUES (2, '172.18.0.31', 'employee_1', 'employee_1', 2);
+INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`) VALUES (3, '172.18.0.32', 'employee_2', 'employee_2', 3);
 
 COMMIT;
 

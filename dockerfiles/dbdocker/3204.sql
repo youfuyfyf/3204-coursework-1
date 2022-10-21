@@ -8,22 +8,22 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema db
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema db
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `db` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema new_schema1
 -- -----------------------------------------------------
-USE `mydb` ;
+USE `db` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Accounts`
+-- Table `db`.`Accounts`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Accounts` (
+CREATE TABLE IF NOT EXISTS `db`.`Accounts` (
   `User_id` INT NOT NULL,
   `Username` VARCHAR(45) NULL,
   `Password` VARCHAR(45) NULL,
@@ -33,9 +33,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`SSH Credentials`
+-- Table `db`.`SSH Credentials`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`SSH Credentials` (
+CREATE TABLE IF NOT EXISTS `db`.`SSH Credentials` (
   `SSH_ID` INT NOT NULL,
   `IP_Address` VARCHAR(45) NULL,
   `Username` VARCHAR(45) NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`SSH Credentials` (
   INDEX `fk_SSH Credentials_Accounts_idx` (`Accounts_User_id` ASC) VISIBLE,
   CONSTRAINT `fk_SSH Credentials_Accounts`
     FOREIGN KEY (`Accounts_User_id`)
-    REFERENCES `mydb`.`Accounts` (`User_id`)
+    REFERENCES `db`.`Accounts` (`User_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -57,24 +57,24 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`Accounts`
+-- Data for table `db`.`Accounts`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `mydb`;
-INSERT INTO `mydb`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (1, 'admin', 'admin@3204.com', 'admin');
-INSERT INTO `mydb`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (2, 'employee_1', 'employee_1@3204.com', 'employee_1');
-INSERT INTO `mydb`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (3, 'employee_2', 'employee_2@3204.com', 'employee_2');
+USE `db`;
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (1, 'admin', 'admin@3204.com', 'admin');
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (2, 'employee_1', 'employee_1@3204.com', 'employee_1');
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (3, 'employee_2', 'employee_2@3204.com', 'employee_2');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`SSH Credentials`
+-- Data for table `db`.`SSH Credentials`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `mydb`;
-INSERT INTO `mydb`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (1, '69.69.69.69', 'root', 'root', 1, 'Boss');
-INSERT INTO `mydb`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (, '', '', '', , NULL);
+USE `db`;
+INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (1, '69.69.69.69', 'root', 'root', 1, 'Boss');
+INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (, '', '', '', , NULL);
 
 COMMIT;
 

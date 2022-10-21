@@ -74,7 +74,6 @@ COMMIT;
 START TRANSACTION;
 USE `db`;
 INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (1, '69.69.69.69', 'root', 'root', 1, 'Boss');
-INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (, '', '', '', , NULL);
 
 COMMIT;
 

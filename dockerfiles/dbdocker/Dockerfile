@@ -1,5 +1,5 @@
 # Download base image
-FROM mysql
+FROM mysql:debian
 
 # LABEL about the custom image
 LABEL Maintainer="yf, retxed"
@@ -17,3 +17,22 @@ ENV MYSQL_DATABASE db
 # ending with “.sql” against the MySQL database. 
 # In our example, we have only one sql script file 3204.sql
 COPY 3204.sql /docker-entrypoint-initdb.d
+
+RUN apt-get update && \
+    apt-get install -y \
+						net-tools \
+						curl 
+						
+WORKDIR /home
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.3-amd64.deb
+RUN dpkg -i filebeat-8.3.3-amd64.deb
+COPY filebeat.yml /etc/filebeat/
+RUN chmod 644 /etc/filebeat/filebeat.yml
+RUN filebeat modules enable mysql
+COPY mysql.yml /etc/filebeat/modules.d/
+RUN chmod 644 /etc/filebeat/modules.d/mysql.yml
+
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["filebeat setup && service filebeat start && docker-entrypoint.sh mysqld"]
+

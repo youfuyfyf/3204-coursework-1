@@ -61,9 +61,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `db`;
-INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (1, 'admin', 'admin@3204.com', 'admin');
-INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (2, 'employee_1', 'employee_1@3204.com', 'employee_1');
-INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (3, 'employee_2', 'employee_2@3204.com', 'employee_2');
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (1, 'admin', 'admin', 'admin@3204.com');
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (2, 'employee_1', 'employee_1', 'employee_1@3204.com');
+INSERT INTO `db`.`Accounts` (`User_id`, `Username`, `Password`, `Email`) VALUES (3, 'employee_2', 'employee_2', 'employee_2@3204.com');
 
 COMMIT;
 
@@ -74,6 +74,5 @@ COMMIT;
 START TRANSACTION;
 USE `db`;
 INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (1, '69.69.69.69', 'root', 'root', 1, 'Boss');
-INSERT INTO `db`.`SSH Credentials` (`SSH_ID`, `IP_Address`, `Username`, `Password`, `Accounts_User_id`, `Name`) VALUES (, '', '', '', , NULL);
 
 COMMIT;

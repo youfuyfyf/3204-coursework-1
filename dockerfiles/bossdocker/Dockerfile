@@ -21,4 +21,4 @@ RUN sed -i '/^#/!s/PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 RUN echo 'root:root' | chpasswd
 
-COPY personal.txt /
+COPY personal.txt /root

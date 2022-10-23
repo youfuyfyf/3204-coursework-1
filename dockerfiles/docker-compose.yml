@@ -76,7 +76,8 @@ services:
     ports:
       - "3306:3306"
     command: >-
-      mysql --general-log=1 --general-log-file=/var/lib/mysql/general-log.log
+      mysql --general-log=1 --general-log-file=/var/lib/mysql/general-log.log &&
+      tail -f /dev/null"
     healthcheck:
       test: service filebeat status | grep 'filebeat is running' || exit 1
       interval: 5s

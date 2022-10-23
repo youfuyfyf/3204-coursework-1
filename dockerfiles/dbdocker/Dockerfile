@@ -32,7 +32,7 @@ RUN filebeat modules enable mysql
 COPY mysql.yml /etc/filebeat/modules.d/
 RUN chmod 644 /etc/filebeat/modules.d/mysql.yml
 
-COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /root/
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["filebeat setup && service filebeat start && docker-entrypoint.sh mysqld"]
 

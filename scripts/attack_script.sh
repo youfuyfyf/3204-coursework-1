@@ -1,17 +1,4 @@
 #!/bin/bash
-#ROOT CHECK
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-# INSTALLATION
-if ! command -v gobuster && ! command -v nikto && ! command -v gnome-terminal &> /dev/null
-	then
-		echo "Missing dependecies, proceeding to install"
-		apt-get update
-		apt-get install gobuster nikto gnome-terminal -y
-	exit
-fi
 # FUNCTIONS
 
 ip4_to_int() {

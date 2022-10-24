@@ -23,16 +23,3 @@ RUN apt-get update && \
 						net-tools \
 						curl 
 						
-WORKDIR /home
-RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.3-amd64.deb
-RUN dpkg -i filebeat-8.3.3-amd64.deb
-COPY filebeat.yml /etc/filebeat/
-RUN chmod 644 /etc/filebeat/filebeat.yml
-RUN filebeat modules enable mysql
-COPY mysql.yml /etc/filebeat/modules.d/
-RUN chmod 644 /etc/filebeat/modules.d/mysql.yml
-
-COPY docker-entrypoint.sh /root/
-ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["filebeat setup && service filebeat start && docker-entrypoint.sh mysqld"]
-

